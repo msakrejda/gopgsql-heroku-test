@@ -2,15 +2,16 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/jbarham/gopgsqldriver"
 	"os"
 )
 
 func main() {
-	url = os.Getenv("DATABASE_URL")
+	url := os.Getenv("DATABASE_URL")
 	db, err := sql.Open("postgres", url)
 	var greeting string
-	err := db.QueryRow("SELECT 'hello world'::text").Scan(&greeting)
+	err = db.QueryRow("SELECT 'hello world'::text").Scan(&greeting)
 	if err != nil {
 		panic(err)
 	}
